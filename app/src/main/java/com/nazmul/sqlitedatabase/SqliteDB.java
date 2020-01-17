@@ -49,6 +49,8 @@ public class SqliteDB extends SQLiteOpenHelper {
     //for insert data
     public boolean insertData(String id,String name,String cell,String email,String dept)
     {
+
+
         SQLiteDatabase db=getWritableDatabase();
         ContentValues values=new ContentValues();
         values.put(COLUMN1,id);
@@ -74,7 +76,7 @@ public class SqliteDB extends SQLiteOpenHelper {
     //for view data
     public Cursor display()
     {
-        SQLiteDatabase db=getReadableDatabase();
+        SQLiteDatabase db =getReadableDatabase();
         Cursor result;
         result=db.rawQuery("SELECT * FROM "+TABLE,null);
         return result;
@@ -82,13 +84,15 @@ public class SqliteDB extends SQLiteOpenHelper {
     }
 
     //update
-    public boolean updateData(String id,String name,String email)
+    public boolean updateData(String id,String name,String cell,String email,String dept)
     {
         SQLiteDatabase db=getWritableDatabase();
         ContentValues values=new ContentValues();
         values.put(COLUMN1,id);
         values.put(COLUMN2,name);
-        values.put(COLUMN3,email);
+        values.put(COLUMN3,cell);
+        values.put(COLUMN4,email);
+        values.put(COLUMN5,dept);
 
         long check=db.update(TABLE,values,"id = ?",new String[] {id});
         if (check==-1)
@@ -116,13 +120,7 @@ public class SqliteDB extends SQLiteOpenHelper {
 
 
 
-}
-
-
-
-
-
-
 
 
 }
+
